@@ -57,6 +57,19 @@ class LinkedList<T> {
         return currentNode
     }
 
+    fun insert(value: T, afterNode: Node<T>) : Node<T>?
+    {
+        if (afterNode.next == null){
+
+            append(value)
+            return tail
+        }
+        var newNode = Node<T>(value = value, next = afterNode.next)
+        afterNode.next = newNode
+        size++
+        return newNode
+    }
+
 
 }
 
@@ -67,6 +80,13 @@ fun main() {
     list.append(1)
     list.append(2)
     list.append(3)
+    println("Before insertion")
+    println(list.head.toString())
+
+    var afterNode = list.nodeAt(1)
+    list.insert(value = 4, afterNode!!)
+
+    println("after insertion of 4")
     println(list.head.toString())
 }
 
